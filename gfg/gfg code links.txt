@@ -1,0 +1,71 @@
+1. Creation of Tree and Inorder Traversal : https://ide.geeksforgeeks.org/TKutx8ZF28
+2. nth Node of Inorder Traversal in Binary Tree : https://ide.geeksforgeeks.org/WAd6Xdnf8a
+3. nth Node of PostOrder Traversal in Binary Tree : https://ide.geeksforgeeks.org/bP9Qku2ZXn
+4. 
+5. Level order traversal Line by Line : https://practice.geeksforgeeks.org/problems/level-order-traversal-line-by-line/1
+6. Level order traversal with direction change after every two levels : https://ide.geeksforgeeks.org/IrwQ43YHeu
+7. Reverse Level Order Traversal :https://practice.geeksforgeeks.org/problems/reverse-level-order-traversal/1
+8. Reverse tree path : https://ide.geeksforgeeks.org/qCVWFP9d6l
+9. Perfect Binary Tree Specific Level Order Traversal : https://ide.geeksforgeeks.org/Q0XYvbA4RY
+10. Perfect Binary Tree Specific Level Order Traversal | Set 2 : https://ide.geeksforgeeks.org/4dsh3uLSKk
+11. Reverse alternate levels of a perfect binary tree : https://practice.geeksforgeeks.org/problems/reverse-alternate-levels-of-a-perfect-binary-tree/1#
+12. Inorder Traversal without Recursion and Stack(Morris Traversal) : https://ide.geeksforgeeks.org/HE2GdYkdbr
+
+vector<int> findSpiral(Node *root)
+{
+    
+    if(!root)
+    return {};
+    
+    deque<Node *> q;
+    
+    q.push_back(root);
+    
+    bool reverse = 1;
+    vector<int> v;
+    
+    while(!q.empty())
+    {
+        int len = q.size();   
+        if(reverse == 0){
+            
+            while(len--){
+            Node *t = q.front();
+            v.push_back(t->data);
+            
+            q.pop_front();
+            
+            if(t->left)
+            q.push_back(t->left);
+            
+            if(t->right)
+            q.push_back(t->right);
+            
+            
+            }
+        }
+        
+        else{
+            
+            while(len--){
+                
+                Node *t = q.back();
+                v.push_back(t->data);
+                
+                q.pop_back();
+                
+                if(t->right)
+                q.push_front(t->right);
+                
+                if(t->left)
+                q.push_front(t->left);
+            }
+            
+            
+        }
+        
+        reverse = !reverse;
+    }
+    
+    return v;
+}
